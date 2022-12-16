@@ -13,9 +13,6 @@ using namespace std;
 #define PQ_rev priority_queue<int>
 #define PQL priority_queue<long long, std::vector<long long>, std::greater<long long>>
 #define PQL_rev priority_queue<long long>
-#define loop for (int i = 0; i <
-#define times \
-    ; i++)
 
 vector<int> read_an_int_vector()
 {
@@ -57,7 +54,7 @@ public:
     {
         veci temp;
         cin >> m >> n >> p;
-        loop m times
+        for (int i = 0; i < m; i++)
         {
             temp = read_an_int_vector(n);
             scoreboard.push_back(temp);
@@ -67,7 +64,7 @@ public:
     {
         int x, y;
         PQ_rev q;
-        loop n times
+        for (int i = 0; i < n; i++)
         {
             x = scoreboard[p - 1][i];
             for (int j = 0; j < m; j++)
@@ -99,14 +96,14 @@ int main()
     vector<class Problem> cases;
     cin >> no_of_cases;
 
-    loop no_of_cases times
+    for (int i = 0; i < no_of_cases; i++)
     {
         Problem obj = Problem();
         obj.read_input();
         obj.solve();
         cases.push_back(obj);
     }
-    loop no_of_cases times
+    for (int i = 0; i < no_of_cases; i++)
     {
         cout << "Case #" << i + 1 << ": ";
         cases.at(i).print_output();

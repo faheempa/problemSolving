@@ -2,7 +2,6 @@
 // https://www.hackerrank.com/challenges/arrays-ds/problem?isFullScreen=true
 
 #include <bits/stdc++.h>
-#include <boost/algorithm/string.hpp>
 using namespace std;
 #define vi vector<int>
 #define vc vector<char>

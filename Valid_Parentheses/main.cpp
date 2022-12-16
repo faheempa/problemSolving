@@ -23,8 +23,6 @@ using namespace std;
 #define um(a, b) unordered_map<a, b>
 vector<int> read_an_int_vector();
 vector<int> read_an_int_vector(int n);
-vector<string> read_a_string_vector();
-vector<string> read_a_string_vector(int n);
 
 class Problem
 {
