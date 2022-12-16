@@ -29,7 +29,6 @@ class Problem
 {
 private:
     vi nums;
-    int n;
 
 public:
     Problem()
@@ -37,11 +36,11 @@ public:
     }
     void read_input()
     {
-        cin >> n;
-        nums = read_an_int_vector(n);
+        nums = read_an_int_vector();
     }
     void solve()
     {
+        int n = nums.size();
         int i = 0, j = n - 1;
         while (i < j)
             swap(nums.at(i++), nums.at(j--));
@@ -57,11 +56,24 @@ public:
 
 int main()
 {
-    Problem obj = Problem();
-    obj.read_input();
-    obj.solve();
-    obj.print_output();
-    cout<<endl;
+    int no_of_cases;
+    vector<class Problem> cases;
+    cin >> no_of_cases;
+
+    for (int i = 0; i < no_of_cases; i++)
+    {
+        Problem obj = Problem();
+        obj.read_input();
+        obj.solve();
+        cases.push_back(obj);
+    }
+    for (int i = 0; i < no_of_cases; i++)
+    {
+        cout << "Case #" << i + 1 << ": ";
+        cases.at(i).print_output();
+        cout << e;
+    }
+
     return 0;
 }
 

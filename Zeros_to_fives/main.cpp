@@ -1,3 +1,6 @@
+// put 5 in place of 0
+// eg: 1045040003 --> 1545545553
+
 #include <bits/stdc++.h>
 using namespace std;
 #define vi vector<int>

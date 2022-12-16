@@ -1,3 +1,6 @@
+// Question
+// https://codingcompetitions.withgoogle.com/kickstart/round/00000000008cb1b6/0000000000c4766e
+
 #include <iostream>
 #include <vector>
 
@@ -63,13 +66,13 @@ public:
                                                 distance -= run.first;
                                 }
                         }
-                        if(distance>=this->l)
+                        if (distance >= this->l)
                         {
-                                lap+=distance/this->l;
-                                distance%=this->l;
+                                lap += distance / this->l;
+                                distance %= this->l;
                         }
                 }
-                cout<<lap<<endl;
+                cout << lap << endl;
         }
 };
 
@@ -92,27 +95,3 @@ int main()
         }
         return 0;
 }
-
-
-// input
-// 3
-// 5 3
-// 8 C
-// 4 A
-// 5 C
-// 4 5
-// 2 C
-// 8 A
-// 3 A
-// 5 C
-// 8 A
-// 4 3
-// 3 C
-// 2 A
-// 5 C
-
-// output
-// Case #1: 1
-// Case #2: 5
-// Case #3: 1
-

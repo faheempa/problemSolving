@@ -1,3 +1,6 @@
+// quesion
+// https://codingcompetitions.withgoogle.com/kickstart/round/00000000008f4332/0000000000941e56
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -63,18 +66,3 @@ int main()
     return 0;
 }
 
-// input
-// 2
-// 3
-// 5 1 2
-// 6
-// 1 3 3 2 2 15
-
-// output
-// Case #1: 1 1 2
-// Case #2: 1 1 2 2 2 3
-
-// sample input of 25
-// 1 3 2 5 8 10 2 5 1 7 2 4 90 2 4 6 3 8 24 4 23 65 12 76 222
-// sample input of 50
-//  1 3 2 5 8 10 2 5 1 7 2 4 90 2 4 6 3 8 24 4 23 65 12 76 222 3 12 45 2 34 10 14 16 9 5 20 23 4 2 53 4 32 43 43 2 1 54 23 7 24 50

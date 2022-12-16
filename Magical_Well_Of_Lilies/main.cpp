@@ -1,3 +1,6 @@
+// quesion
+// https://codingcompetitions.withgoogle.com/kickstart/round/00000000008cb1b6/0000000000c47e79
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -54,27 +57,8 @@ public:
             }
             q.pop();
         }
-        cout << ans << endl;
+        cout << ans;
     }
-    // void solve()
-    // {
-    //     cout << this->solve_helper(0, 0, 0) << endl;
-    // }
-    // int solve_helper(int coins, int note, int basket)
-    // {
-    //     cout<<c++<<endl;
-    //     if (basket==this->n)
-    //         return coins;
-    //     if (basket>this->n or coins>this->n or note>this->n/2)
-    //         return max;
-    //     int one=max, two=max, four=max;
-    //     one=solve_helper(coins+1, note, basket+1);
-    //     if (note>0)
-    //         two=solve_helper(coins+2, note, basket+note);
-    //     if (note!=basket)
-    //         four=solve_helper(coins+4, basket, basket);
-    //     return std::min(one, std::min(two, four));
-    // }
 };
 
 int main()
