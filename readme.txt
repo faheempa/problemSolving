@@ -4,6 +4,7 @@ This is me solving some problems found on various platforms.
 main.cpp is the source code.
 question is commented on top of the source code.
 input.txt contains the sample input.
+output.txt contains the sample output.
 
 Solution design:
     Solution of the problem is in the class called Problem.
