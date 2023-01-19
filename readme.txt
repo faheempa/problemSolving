@@ -9,6 +9,7 @@ output.txt contains the sample output.
 Solution design:
     Solution of the problem is in the class called Problem.
     Variables used in the problem are declared as private attributes of class Problem.
+    
     There are 4 public functions in the class Problem.
     1. Constructor - Used to initialize the required Variables.
     2. Read_input() - Used to read the input.
