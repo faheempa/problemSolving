@@ -61,18 +61,20 @@ public:
         }
         for (auto item : p)
         {
-            if (i[count] == item and count < i.length())
+            if (i[count] == item and count < int(i.length()))
                 count++;
         }
-        if (count != i.length())
+        if (count != int(i.length()))
             ans = -1;
+        else
+            ans = p.length() - i.length();
     }
     void print_output()
     {
         if (ans == -1)
             cout << "IMPOSSIBLE";
         else
-            cout << (p.length() - i.length());
+            cout << ans;
     }
 };
 

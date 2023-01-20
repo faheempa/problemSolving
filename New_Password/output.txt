@@ -1,0 +1,5 @@
+Case #1: 1234567Sn@
+Case #2: 1111234567Sn@
+Case #3: An5@111
+Case #4: 1*Sn111
+Case #5: 1234aB&
