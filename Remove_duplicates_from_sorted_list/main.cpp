@@ -1,4 +1,5 @@
 // Question
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -15,17 +16,24 @@ using namespace std;
 #define pll pair<ll, ll>
 #define pb push_back
 #define um(a, b) unordered_map<a, b>
+#define print_vector(a) \
+    for (auto var : a)  \
+    cout << var << " "
+#define lenv(a) int(a.size())
+#define lens(a) int(a.lenght())
 const long double PI = 3.141592653589793;
 class Timer
 {
     std::chrono::_V2::system_clock::time_point start, end;
+
 public:
     Timer() { start = std::chrono::high_resolution_clock::now(); }
     ~Timer()
     {
         end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        std::cout << "\nRun time: " << std::fixed << std::setprecision(3) << float(duration.count())/1000<< " ms"<<"\n";
+        std::cout << "\nRun time: " << std::fixed << std::setprecision(3) << float(duration.count()) / 1000 << " ms"
+                  << "\n";
     }
 };
 vector<int> read_an_int_vector();
@@ -36,69 +44,63 @@ class Problem
 {
 private:
     vi nums;
-    int target;
-    pii ans;
+    int k;
 
 public:
     Problem()
     {
-        ans = pair(-1, -1);
+        k = 0;
     }
-    void read_input()
+    void input()
     {
         nums = read_an_int_vector();
-        cin >> target;
     }
     void solve()
     {
-        int n = nums.size();
-        um(int, int) mp;
-        for (int i = 0; i < n; i++)
+        um(int, int) map;
+        for (int i = 0; i < lenv(nums); i++)
         {
-            if (mp.count(nums.at(i)) > 0)
-            {
-                ans = pair(mp.at(nums.at(i)), i);
-                return;
-            }
-            mp[target - nums.at(i)] = i;
+            if (map.count(nums.at(i)) > 0)
+                k++;
+            else
+                map[nums.at(i)] = i;
         }
     }
-    void print_output()
+    void output()
     {
-        cout << ans.first << " " << ans.second;
+        cout << k;
     }
 };
 
 int main()
 {
     // runtime counter
-    Timer runtime = Timer();
+    // Timer runtime = Timer();
 
     // multiple test cases
     vector<class Problem> cases;
     int no_of_cases;
-    fastscanInt(no_of_cases);
+    cin >> no_of_cases;
 
     for (int i = 0; i < no_of_cases; i++)
     {
         Problem obj = Problem();
-        obj.read_input();
+        obj.input();
         cases.push_back(obj);
     }
     for (int i = 0; i < no_of_cases; i++)
     {
         cases.at(i).solve();
         cout << "Case #" << i + 1 << ": ";
-        cases.at(i).print_output();
+        cases.at(i).output();
         cout << e;
     }
 
     // single test case
     // Problem obj = Problem();
-    // obj.read_input();
-    // obj.read_input();
+    // obj.input();
     // obj.solve();
-    // obj.print_output();
+    // obj.output();
 }
 
 // user defined functions
@@ -118,24 +120,8 @@ vector<int> read_an_int_vector(int n)
     vector<int> vec;
     for (int i = 0; i < n; i++)
     {
-        fastscanInt(a);
+        cin >> a;
         vec.push_back(a);
     }
     return vec;
-}
-void fastscanInt(int &number)
-{
-    bool negative = false;
-    int c;
-    number = 0;
-    c = getchar();
-    if (c == '-')
-    {
-        negative = true;
-        c = getchar();
-    }
-    for (; (c > 47 && c < 58); c = getchar())
-        number = number * 10 + c - 48;
-    if (negative)
-        number *= -1;
 }

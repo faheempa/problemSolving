@@ -1,4 +1,5 @@
 // Question
+// https://leetcode.com/problems/merge-two-sorted-lists/
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -15,17 +16,25 @@ using namespace std;
 #define pll pair<ll, ll>
 #define pb push_back
 #define um(a, b) unordered_map<a, b>
+#define print_vector(a) \
+    for (auto var : a)  \
+        cout << var << " ";
+#define lenv(a) int(a.size())
+#define lens(a) int(a.lenght())
+
 const long double PI = 3.141592653589793;
 class Timer
 {
     std::chrono::_V2::system_clock::time_point start, end;
+
 public:
     Timer() { start = std::chrono::high_resolution_clock::now(); }
     ~Timer()
     {
         end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        std::cout << "\nRun time: " << std::fixed << std::setprecision(3) << float(duration.count())/1000<< " ms"<<"\n";
+        std::cout << "\nRun time: " << std::fixed << std::setprecision(3) << float(duration.count()) / 1000 << " ms"
+                  << "\n";
     }
 };
 vector<int> read_an_int_vector();
@@ -35,37 +44,35 @@ void fastscanInt(int &number);
 class Problem
 {
 private:
-    vi nums;
-    int target;
-    pii ans;
+    vi l1;
+    vi l2;
+    vi sorted;
 
 public:
     Problem()
     {
-        ans = pair(-1, -1);
     }
     void read_input()
     {
-        nums = read_an_int_vector();
-        cin >> target;
+        l1 = read_an_int_vector();
+        l2 = read_an_int_vector();
     }
     void solve()
     {
-        int n = nums.size();
-        um(int, int) mp;
-        for (int i = 0; i < n; i++)
-        {
-            if (mp.count(nums.at(i)) > 0)
-            {
-                ans = pair(mp.at(nums.at(i)), i);
-                return;
-            }
-            mp[target - nums.at(i)] = i;
-        }
+        int i = 0, j = 0;
+        while (i < lenv(l1) && j < lenv(l2))
+            if (l1.at(i) < l2.at(j))
+                sorted.pb(l1.at(i++));
+            else
+                sorted.pb(l2.at(j++));
+        while (i < lenv(l1))
+            sorted.pb(l1.at(i++));
+        while (j < lenv(l2))
+            sorted.pb(l2.at(j++));
     }
     void print_output()
     {
-        cout << ans.first << " " << ans.second;
+        print_vector(sorted);
     }
 };
 
