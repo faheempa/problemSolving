@@ -19,8 +19,11 @@ Solution design:
 
 Exicuting (in linux):
 
-    use 'g++ main.cpp' to compile the code and to generate object code.
-    use 'cat input.txt | ./a.out' to run with the sample input.
+    g++ main.cpp
+to compile the code and to generate object code.
+
+    cat input.txt | ./a.out
+to run with the sample input.
 
 Input format:
 
