@@ -12,10 +12,10 @@ Solution design:
     Variables used in the problem are declared as private attributes of class Problem.
     
     There are 4 public functions in the class Problem.
-    1. Constructor - Used to initialize the required Variables.
-    2. Input() - Used to read the input.
-    3. Solve() - This function will solve the problem.
-    4. Output() - This function prints the solution of the problem.
+    1. Problem() - Constructor used to initialize the required Variables.
+    2. Input() - Used to read the input(s).
+    3. Solve() - Solution to the problem.
+    4. Output() - Prints the output(s).
 
 Exicuting (in linux):
 
