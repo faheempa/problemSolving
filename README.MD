@@ -7,6 +7,7 @@ input.txt contains the sample input.
 output.txt contains the sample output.
 
 Solution design:
+
     Solution of the problem is in the class called Problem.
     Variables used in the problem are declared as private attributes of class Problem.
     
@@ -17,10 +18,12 @@ Solution design:
     4. Print_output() - This function prints the solution of the problem.
 
 Exicuting (in linux):
+
     use 'g++ main.cpp' to compile the code and to generate object code.
     use 'cat input.txt | ./a.out' to run with the sample input.
 
 Input format:
+
     <no of test cases>
     <input for 1st case>
     <input for 2nd case>
@@ -28,6 +31,7 @@ Input format:
     <input for nth case>
 
 Output format:
+
     case #1: <output of case 1>
     case #2: <output of case 2>
     case #..: <output of case ..>
