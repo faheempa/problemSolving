@@ -13,9 +13,9 @@ Solution design:
     
     There are 4 public functions in the class Problem.
     1. Constructor - Used to initialize the required Variables.
-    2. Read_input() - Used to read the input.
+    2. Input() - Used to read the input.
     3. Solve() - This function will solve the problem.
-    4. Print_output() - This function prints the solution of the problem.
+    4. Output() - This function prints the solution of the problem.
 
 Exicuting (in linux):
 
