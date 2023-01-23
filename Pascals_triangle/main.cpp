@@ -1,9 +1,8 @@
 // Question
-// https://leetcode.com/problems/plus-one/
 
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
+#define ll long long int
 #define ld long double
 #define e "\n"
 #define vi vector<int>
@@ -15,6 +14,7 @@ using namespace std;
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define pb push_back
+#define eb emplace_back
 #define um(a, b) unordered_map<a, b>
 #define print(a)       \
     for (auto var : a) \
@@ -42,7 +42,8 @@ vector<int> read_an_int_vector(int n);
 class Problem
 {
 private:
-    vi digits;
+    int n;
+    vector<vi> soln;
 
 public:
     Problem()
@@ -50,46 +51,41 @@ public:
     }
     void input()
     {
-        digits = read_an_int_vector();
+        cin >> n;
     }
     void solve()
     {
-        int i = lenv(digits) - 1;
-        while (true)
+        for (int i = 0; i < n; i++)
         {
-            if (i < 0)
-            {
-                digits.insert(digits.begin(), 1);
-                break;
-            }
-            if (digits.at(i) == 9)
-            {
-                digits.at(i) = (digits.at(i) + 1) % 10;
-                i--;
-            }
-            else
-            {
-                digits.at(i) += 1;
-                break;
-            }
+            vi row;
+            for (int j = 0; j <= i; j++)
+                if (j == 0 || j == i)
+                    row.pb(1);
+                else
+                    row.pb(soln.at(i - 1).at(j) + soln.at(i - 1).at(j - 1));
+            soln.pb(row);
         }
     }
     void output()
     {
-        print(digits);
+        for (auto var : soln)
+        {
+            cout << e;
+            print(var);
+        }
     }
 };
 
 int main()
 {
     // runtime counter
-    Timer runtime = Timer();
+    // Timer runtime = Timer();
 
     // multiple test cases
     int no_of_cases, c = 1;
     cin >> no_of_cases;
-    vector<class Problem> cases(no_of_cases);
-    for (auto problem : cases)
+    vector<class Problem> problems(no_of_cases);
+    for (auto problem : problems)
     {
         problem.input();
         problem.solve();

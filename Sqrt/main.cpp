@@ -1,5 +1,5 @@
 // Question
-// https://leetcode.com/problems/plus-one/
+// https://leetcode.com/problems/sqrtx/
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -16,8 +16,8 @@ using namespace std;
 #define pll pair<ll, ll>
 #define pb push_back
 #define um(a, b) unordered_map<a, b>
-#define print(a)       \
-    for (auto var : a) \
+#define print_vector(a) \
+    for (auto var : a)  \
     cout << var << " "
 #define lenv(a) int(a.size())
 #define lens(a) int(a.lenght())
@@ -42,7 +42,8 @@ vector<int> read_an_int_vector(int n);
 class Problem
 {
 private:
-    vi digits;
+    int x;
+    int root;
 
 public:
     Problem()
@@ -50,33 +51,40 @@ public:
     }
     void input()
     {
-        digits = read_an_int_vector();
+        cin >> x;
     }
     void solve()
     {
-        int i = lenv(digits) - 1;
-        while (true)
+
+        root=floorSqrt();
+    }
+    int floorSqrt()
+    {
+        if (x == 0 || x == 1)
+            return x;
+
+        int start = 1, end = x / 2, ans=0;
+        while (start <= end)
         {
-            if (i < 0)
+            int mid = (start + end) / 2;
+            int sqr = mid * mid;
+
+            if (sqr == x)
+                return mid;
+
+            if (sqr <= x)
             {
-                digits.insert(digits.begin(), 1);
-                break;
-            }
-            if (digits.at(i) == 9)
-            {
-                digits.at(i) = (digits.at(i) + 1) % 10;
-                i--;
+                start = mid + 1;
+                ans = mid;
             }
             else
-            {
-                digits.at(i) += 1;
-                break;
-            }
+                end = mid - 1;
         }
+        return ans;
     }
     void output()
     {
-        print(digits);
+        cout << root;
     }
 };
 
@@ -86,15 +94,21 @@ int main()
     Timer runtime = Timer();
 
     // multiple test cases
-    int no_of_cases, c = 1;
+    vector<class Problem> cases;
+    int no_of_cases;
     cin >> no_of_cases;
-    vector<class Problem> cases(no_of_cases);
-    for (auto problem : cases)
+
+    for (int i = 0; i < no_of_cases; i++)
     {
-        problem.input();
-        problem.solve();
-        cout << "Case #" << c++ << ": ";
-        problem.output();
+        Problem obj = Problem();
+        obj.input();
+        cases.push_back(obj);
+    }
+    for (int i = 0; i < no_of_cases; i++)
+    {
+        cases.at(i).solve();
+        cout << "Case #" << i + 1 << ": ";
+        cases.at(i).output();
         cout << e;
     }
 
