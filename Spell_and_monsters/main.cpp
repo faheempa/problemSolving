@@ -1,7 +1,5 @@
 // Question
-// from the given list of values, find the number of triplets those sum is 0
-// eg: -2 4 -1 3 -3
-// output: 1 (that is {0,-3,3})
+// https://codeforces.com/contest/1792/problem/0
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -11,16 +9,16 @@ using namespace std;
 #define vi vector<int>
 #define vll vector<long long>
 #define pq priority_queue<int, std::vector<int>, std::greater<int>>
-#define pqr priority_queue<int>
-#define pqll priority_queue<long long, std::vector<long long>, std::greater<long long>>
-#define pqllr priority_queue<long long>
+#define pq_rev priority_queue<int>
+#define pql priority_queue<long long, std::vector<long long>, std::greater<long long>>
+#define pql_rev priority_queue<long long>
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define pb push_back
 #define eb emplace_back
 #define um(a, b) unordered_map<a, b>
 #define print(a) for (auto var : a) cout << var << " "
-#define sz(a) int(a.size())
+#define size(a) int(a.size())
 #define len(a) int(a.lenght())
 const long double PI = 3.141592653589793;
 class Timer
@@ -61,35 +59,38 @@ void read_int_vector(vi &vec, int n)
 class Problem
 {
 private:
-    vi numbers;
     int n;
-    int ans;
+    int count;
 
 public:
     Problem()
     {
-        ans = 0;
     }
     void input()
     {
-        read_int_vector(numbers);
-        n = numbers.size();
+        cin >> n;
     }
     void solve()
     {
-        sort(numbers.begin(), numbers.end());
-        for (int i = 0; i < n && numbers.at(i) < 0; i++)
+        // logic - monsters with health one can killed using spell 1 (in pair) and rest with spell 2
+        int ones = 0;
+        for (int i = 0; i < n; i++)
         {
-            int target = 0 - numbers.at(i);
-            for (int j = i + 1; j < n - 1 && numbers.at(j) < target; j++)
-                if (binary_search(numbers.begin() + j + 1, numbers.end(), target - numbers.at(j)) == true)
-                    ans++;
+            int x;
+            cin >> x;
+            if (x == 1)
+                ones++;
         }
+        if (ones == 0)
+            count = n;
+        if (ones % 2 == 0)
+            count = ones / 2 + n - ones;
+        else
+            count = ones / 2 + (n - ones) + 1;
     }
-
     void output()
     {
-        cout << ans;
+        cout << count;
     }
 };
 
