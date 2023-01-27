@@ -18,81 +18,63 @@ vector<int> read_an_int_vector()
     return vec;
 }
 
-class Problem
+int solve(vector<int> numbers, int k)
 {
-private:
-    vector<int> numbers;
-    int k;
-    int ans;
-
-public:
-    Problem()
+    int ans = 0, i = 0, sum = 0, n = numbers.size();
+    queue<int> Q;
+    Q.push(numbers.at(i));
+    sum += numbers.at(i++);
+    while (!Q.empty())
     {
-        ans = 0;
-    }
-    void input()
-    {
-        numbers = read_an_int_vector();
-        cin >> k;
-    }
-    void solve()
-    {
-        int i = 0, sum = 0, n = numbers.size();
-        queue<int> Q;
-        Q.push(numbers.at(i));
-        sum += numbers.at(i++);
-        while (!Q.empty())
+        if (Q.front() > k and i < n)
         {
-            if (Q.front() > k and i < n)
+            while (!Q.empty())
+                Q.pop();
+            sum = 0;
+            Q.push(numbers.at(i));
+            sum += numbers.at(i++);
+            continue;
+        }
+        if (sum < k and i < n)
+        {
+            Q.push(numbers.at(i));
+            sum += numbers.at(i++);
+        }
+        else if (sum == k)
+        {
+            if (ans < int(Q.size()))
+                ans = Q.size();
+            sum -= Q.front();
+            Q.pop();
+            if (Q.empty())
             {
-                while (!Q.empty())
-                    Q.pop();
-                sum = 0;
                 Q.push(numbers.at(i));
                 sum += numbers.at(i++);
-                continue;
-            }
-            if (sum < k and i < n)
-            {
-                Q.push(numbers.at(i));
-                sum += numbers.at(i++);
-            }
-            else if (sum == k)
-            {
-                if (ans < int(Q.size()))
-                    ans = Q.size();
-                sum -= Q.front();
-                Q.pop();
-                if (Q.empty())
-                {
-                    Q.push(numbers.at(i));
-                    sum += numbers.at(i++);
-                }
-            }
-            else
-            {
-                sum -= Q.front();
-                Q.pop();
             }
         }
+        else
+        {
+            sum -= Q.front();
+            Q.pop();
+        }
     }
-    void output()
-    {
-        cout << ans;
-    }
-};
+    return ans;
+}
 
 int main()
 {
-    int no_of_cases;
-    cin >> no_of_cases;
+    int t;
+    cin >> t;
 
-    for (int i = 0; i < no_of_cases; i++)
+    for (int i = 0; i < t; i++)
     {
-        Problem obj = Problem();
-        obj.input();
-        obj.solve();
-        cout << "Case #" << i + 1 << ": ";
-        obj.output();
+        vector<int> numbers;
+        int k;
+        numbers = read_an_int_vector();
+        cin >> k;
+        cout << solve(numbers, k) << endl;
     }
+
+    return 0;
 }
+
