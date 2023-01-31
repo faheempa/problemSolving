@@ -1,8 +1,15 @@
 // Question
+// https://leetcode.com/problems/two-sum/description/
 
 #include <bits/stdc++.h>
 using namespace std;
 
+template <class T>
+void print(T elems)
+{
+    for (auto elem : elems)
+        cout << elem << " ";
+}
 void read_int_vector(vector<int> &vec)
 {
     string input;
@@ -13,55 +20,31 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-class Problem
+vector<int> solve(vector<int> &nums, int target)
 {
-private:
-    vector<int> nums;
-    int target;
-    pair<int, int> ans;
-
-public:
-    Problem()
+    unordered_map<int, int> mp;
+    for (int i = 0; i < nums.size(); i++)
     {
-        ans = pair(-1, -1);
+        if (mp.find(nums.at(i)) != mp.end())
+            return {mp.at(nums.at(i)), i};
+        mp[target - nums.at(i)] = i;
     }
-    void input()
-    {
-        read_int_vector(nums);
-        cin >> target;
-    }
-    void solve()
-    {
-        int n = nums.size();
-        unordered_map<int, int> mp;
-        for (int i = 0; i < n; i++)
-        {
-            if (mp.count(nums.at(i)) > 0)
-            {
-                ans = pair(mp.at(nums.at(i)), i);
-                return;
-            }
-            mp[target - nums.at(i)] = i;
-        }
-    }
-    void output()
-    {
-        cout << ans.first << " " << ans.second;
-    }
-};
+    return {-1, -1};
+}
 
 int main()
 {
-    // testing multiple inputs
     int t;
     cin >> t;
     for (int i = 1; i <= t; i++)
     {
-        Problem obj = Problem();
-        obj.input();
-        obj.solve();
+        vector<int> nums;
+        read_int_vector(nums);
+        int target;
+        cin >> target;
+
         cout << "Case #" << i << ": ";
-        obj.output();
+        print(solve(nums, target));
         cout << endl;
     }
 }
