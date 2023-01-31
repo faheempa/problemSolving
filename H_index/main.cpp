@@ -1,68 +1,50 @@
-// quesion
+// Question
 // https://codingcompetitions.withgoogle.com/kickstart/round/00000000008f4332/0000000000941e56
 
-#include <iostream>
-#include <vector>
-#include <queue>
+#include <bits/stdc++.h>
+using namespace std;
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::vector;
-
-class H_index
+void read_int_vector(vector<int> &vec, int n)
 {
-    int n, index;
-    vector<int> citations;
+    int a;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a;
+        vec.push_back(a);
+    }
+}
 
-public:
-    H_index(int n = 0, int index = 0)
-        : n{n}, index{index} {}
-    void read_citations()
+void solve(vector<int> &citations, int n)
+{
+    int index = 0;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> q;
+    for (int i = 0; i < n; i++)
     {
-        int item;
-        for (int i = 0; i < this->n; i++)
+        if (citations.at(i) > index)
+            q.push(citations.at(i));
+        if (int(q.size()) > index)
         {
-            cin >> item;
-            this->citations.push_back(item);
+            index++;
+            while (int(q.top()) == index and !q.empty())
+                q.pop();
         }
+        cout << index << " ";
     }
-    void solve()
-    {
-        std::priority_queue<int, std::vector<int>, std::greater<int>> q;
-        for (int i = 0; i < this->n; i++)
-        {
-            if (this->citations.at(i) > this->index)
-                q.push(citations.at(i));
-            if (int(q.size()) > this->index)
-            {
-                this->index++;
-                while (int(q.top()) == this->index and !q.empty())
-                    q.pop();
-            }
-            cout << this->index << " ";
-        }
-        cout << endl;
-    }
-};
+}
 
 int main()
 {
-    int a, n;
-    vector<class H_index> cases;
-    cin >> a;
-    for (int i = 0; i < a; i++)
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++)
     {
+        int n;
         cin >> n;
-        H_index obj = H_index(n);
-        obj.read_citations();
-        cases.push_back(obj);
-    }
-    for (int i = 0; i < a; i++)
-    {
-        cout << "Case #" << i + 1 << ": ";
-        cases.at(i).solve();
-    }
-    return 0;
-}
+        vector<int> citations;
+        read_int_vector(citations, n);
 
+        cout << "Case #" << i << ": ";
+        solve(citations, n);
+        cout << endl;
+    }
+}
