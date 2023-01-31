@@ -3,146 +3,102 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define ld long double
-#define e "\n"
-#define vi vector<int>
-#define vll vector<long long>
-#define pq priority_queue<int, std::vector<int>, std::greater<int>>
-#define pq_rev priority_queue<int>
-#define pql priority_queue<long long, std::vector<long long>, std::greater<long long>>
-#define pql_rev priority_queue<long long>
-#define pii pair<int, int>
-#define pll pair<ll, ll>
-#define pb push_back
-#define um(a, b) unordered_map<a, b>
-#define print_vector(a) \
-    for (auto var : a)  \
-        cout << var << " ";
-#define lenv(a) int(a.size())
-#define lens(a) int(a.lenght())
 
-const long double PI = 3.141592653589793;
-class Timer
+struct ListNode
 {
-    std::chrono::_V2::system_clock::time_point start, end;
-
-public:
-    Timer() { start = std::chrono::high_resolution_clock::now(); }
-    ~Timer()
-    {
-        end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        std::cout << "\nRun time: " << std::fixed << std::setprecision(3) << float(duration.count()) / 1000 << " ms"
-                  << "\n";
-    }
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-vector<int> read_an_int_vector();
-vector<int> read_an_int_vector(int n);
-void fastscanInt(int &number);
 
-class Problem
+void insert(int val, ListNode *&head)
 {
-private:
-    vi l1;
-    vi l2;
-    vi sorted;
+    ListNode *n = new ListNode(val);
+    if (head == NULL)
+    {
+        head = n;
+        return;
+    }
+    ListNode *ptr = head;
+    while (ptr->next != nullptr)
+        ptr = ptr->next;
+    ptr->next = n;
+}
+void read_data(ListNode *&l, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        int data;
+        cin >> data;
+        insert(data, l);
+    }
+}
+void print_list(ListNode *head)
+{
+    ListNode *ptr = head;
+    while (ptr != nullptr)
+    {
+        cout << ptr->val << " ";
+        ptr = ptr->next;
+    }
+    cout << endl;
+}
 
-public:
-    Problem()
+void deallocate(ListNode *head)
+{
+    if (head == nullptr)
+        return;
+    ListNode *ptr = head;
+    while (ptr->next != nullptr)
     {
+        ListNode *del = ptr;
+        ptr = ptr->next;
+        delete del;
     }
-    void read_input()
+    delete ptr;
+    head = nullptr;
+}
+
+ListNode *solve(ListNode *&l1, ListNode *&l2)
+{
+    if (l1 == NULL)
+        return l2;
+
+    if (l2 == NULL)
+        return l1;
+
+    if (l1->val <= l2->val)
     {
-        l1 = read_an_int_vector();
-        l2 = read_an_int_vector();
+        l1->next = solve(l1->next, l2);
+        return l1;
     }
-    void solve()
+    else
     {
-        int i = 0, j = 0;
-        while (i < lenv(l1) && j < lenv(l2))
-            if (l1.at(i) < l2.at(j))
-                sorted.pb(l1.at(i++));
-            else
-                sorted.pb(l2.at(j++));
-        while (i < lenv(l1))
-            sorted.pb(l1.at(i++));
-        while (j < lenv(l2))
-            sorted.pb(l2.at(j++));
+        l2->next = solve(l1, l2->next);
+        return l2;
     }
-    void print_output()
-    {
-        print_vector(sorted);
-    }
-};
+}
 
 int main()
 {
-    // runtime counter
-    Timer runtime = Timer();
-
-    // multiple test cases
-    vector<class Problem> cases;
-    int no_of_cases;
-    fastscanInt(no_of_cases);
-
-    for (int i = 0; i < no_of_cases; i++)
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++)
     {
-        Problem obj = Problem();
-        obj.read_input();
-        cases.push_back(obj);
-    }
-    for (int i = 0; i < no_of_cases; i++)
-    {
-        cases.at(i).solve();
-        cout << "Case #" << i + 1 << ": ";
-        cases.at(i).print_output();
-        cout << e;
-    }
+        ListNode *l1 = nullptr;
+        ListNode *l2 = nullptr;
+        int n;
+        cin >> n;
+        read_data(l1, n);
+        cin >> n;
+        read_data(l2, n);
+        ListNode *merged = solve(l1, l2);
 
-    // single test case
-    // Problem obj = Problem();
-    // obj.read_input();
-    // obj.read_input();
-    // obj.solve();
-    // obj.print_output();
-}
-
-// user defined functions
-vector<int> read_an_int_vector()
-{
-    string input;
-    getline(cin, input);
-    if (input.length() == 0)
-        return read_an_int_vector();
-    istringstream is(input);
-    vector<int> vec((istream_iterator<int>(is)), istream_iterator<int>());
-    return vec;
-}
-vector<int> read_an_int_vector(int n)
-{
-    int a;
-    vector<int> vec;
-    for (int i = 0; i < n; i++)
-    {
-        fastscanInt(a);
-        vec.push_back(a);
+        cout << "Case #" << i << ": ";
+        print_list(merged);
+        cout << endl;
+        deallocate(merged);
     }
-    return vec;
-}
-void fastscanInt(int &number)
-{
-    bool negative = false;
-    int c;
-    number = 0;
-    c = getchar();
-    if (c == '-')
-    {
-        negative = true;
-        c = getchar();
-    }
-    for (; (c > 47 && c < 58); c = getchar())
-        number = number * 10 + c - 48;
-    if (negative)
-        number *= -1;
 }
