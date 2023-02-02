@@ -1,0 +1,4 @@
+ID: 1	 Name: faheem	 Age: 21	 Healthy: true
+ID: 2	 Name: pranav	 Age: 23	 Healthy: false
+ID: 3	 Name: soorej	 Age: 22	 Healthy: true
+size : 3

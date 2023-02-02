@@ -1,0 +1,3 @@
+01 faheem 21 1
+02 pranav 23 0
+03 soorej 22 1
