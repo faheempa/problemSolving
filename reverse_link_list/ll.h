@@ -197,9 +197,21 @@ public:
         if (head != nullptr)
             while (ptr->next != nullptr)
                 ptr = ptr->next;
-        ptr->next=other.get_head();
+        ptr->next = other.get_head();
         other.set_head(nullptr);
-        length+=other.size();
+        length += other.size();
+    }
+    void reverse()
+    {
+        T *pre = nullptr, *nex;
+        while (head)
+        {
+            nex = head->next;
+            head->next = pre;
+            pre = head;
+            head = nex;
+        }
+        head = pre;
     }
     ~LinkedList()
     {
@@ -209,7 +221,7 @@ public:
     {
         return (this->get_head() == a.get_head());
     }
-    T* find(T target)
+    T *find(T target)
     {
         if (head == nullptr)
             return nullptr;
