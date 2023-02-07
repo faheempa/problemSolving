@@ -45,17 +45,9 @@ int main()
         cin >> a;
         for (int i = 0; i < a; i++)
         {
-            Node *nd = new Node();
-            cin >> nd->val;
-            if (Node *t = l.find(Node(nd->val)); t == nullptr)
-                l.push_back(nd);
-            else
-            {
-                Node *h = l.get_head();
-                while (h->next != nullptr)
-                    h = h->next;
-                h->next = t;
-            }
+            int a;
+            cin>>a;
+            l.push_back(new Node(a));
         }
 
         cout << "Case #" << i << ": ";
