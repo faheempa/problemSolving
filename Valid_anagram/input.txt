@@ -1,0 +1,7 @@
+3
+abcd
+bacd
+abc
+a
+strings
+vectors
