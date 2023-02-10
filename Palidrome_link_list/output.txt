@@ -1,3 +1,7 @@
-Case #1: true
-Case #2: true
-Case #3: false
+false
+false
+true
+false
+true
+false
+false
