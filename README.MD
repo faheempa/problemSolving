@@ -1,5 +1,6 @@
 Hey,
 This is me solving some problems found on various platforms.
+Problem is commented on top and the function solve() is the solution.
 
 Exicuting (in linux):
 

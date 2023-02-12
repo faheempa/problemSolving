@@ -3,11 +3,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-template <typename... T>
-void read(T &...args)
-{
-    ((cin >> args), ...);
-}
 template <class T>
 void print(T elems)
 {
@@ -48,7 +43,6 @@ string getKey(string str)
             key += string(count[i], i + 'a');
     return key;
 }
-
 vector<vector<string>> solve(vector<string> strs)
 {
     unordered_map<string, vector<string>> map;
@@ -73,8 +67,7 @@ int main()
         read_string_vector(s);
 
         cout << "Case #" << i << ": ";
-        vector<vector<string>> ans = solve(s);
-        for (const auto &a : ans)
+        for (const auto &a : solve(s))
             cout << "[ ", print(a), cout << "] ";
         cout << endl;
     }
