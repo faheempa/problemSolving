@@ -1,10 +1,14 @@
 // Question
-// from the given list of values, find the number of triplets those sum is 0
-// eg: -2 4 -1 3 -3
-// output: 1 (that is {0,-3,3})
+// https://leetcode.com/problems/3sum/description/
 
 #include <bits/stdc++.h>
 using namespace std;
+template <class T>
+void print(T elems)
+{
+    for (auto elem : elems)
+        cout << elem << " ";
+}
 
 void read_int_vector(vector<int> &vec)
 {
@@ -16,40 +20,36 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-class Problem
+vector<vector<int>> solve (vector<int> &nums)
 {
-private:
-    vector<int> numbers;
-    int n;
-    int ans;
-
-public:
-    Problem()
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> ans;
+    int n = nums.size();
+    for (int i = 0; i < n - 2; i++)
     {
-        ans = 0;
-    }
-    void input()
-    {
-        read_int_vector(numbers);
-        n = numbers.size();
-    }
-    void solve()
-    {
-        sort(numbers.begin(), numbers.end());
-        for (int i = 0; i < n && numbers.at(i) < 0; i++)
+        if (i > 0 and nums.at(i) == nums.at(i - 1))
+            continue;
+        if (nums.at(i) > 0)
+            break;
+        int l = i + 1, r = n - 1;
+        while (l < r)
         {
-            int target = 0 - numbers.at(i);
-            for (int j = i + 1; j < n - 1 && numbers.at(j) < target; j++)
-                if (binary_search(numbers.begin() + j + 1, numbers.end(), target - numbers.at(j)) == true)
-                    ans++;
+            int sum = nums.at(i) + nums.at(l) + nums.at(r);
+            if (sum == 0)
+            {
+                ans.push_back({nums.at(i), nums.at(l), nums.at(r)});
+                l++;
+                while (nums.at(l - 1) == nums.at(l) and l < r)
+                    l++;
+            }
+            else if (sum > 0)
+                r--;
+            else
+                l++;
         }
     }
-
-    void output()
-    {
-        cout << ans;
-    }
-};
+    return ans;
+}
 
 int main()
 {
@@ -57,11 +57,12 @@ int main()
     cin >> t;
     for (int i = 1; i <= t; i++)
     {
-        Problem obj = Problem();
-        obj.input();
-        obj.solve();
-        cout << "Case #" << i << ": ";
-        obj.output();
-        cout << endl;
+        vector<int> nums;
+        read_int_vector(nums);
+        cout << "Case #" << i << ": " << endl;
+        auto ans = solve(nums);
+        for (const auto &a : ans)
+            print(a), cout<<endl;
+        cout<<endl;
     }
 }

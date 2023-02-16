@@ -1,0 +1,3 @@
+2
+ABAABABAB 1
+ABAB 2
