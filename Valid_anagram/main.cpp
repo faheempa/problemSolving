@@ -3,15 +3,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-void read_int_vector(vector<int> &vec)
-{
-    string input;
-    getline(cin, input);
-    if (input.length() == 0)
-        return read_int_vector(vec);
-    istringstream is(input);
-    vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
-}
 
 bool solve(string s, string t)
 {

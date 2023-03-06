@@ -40,7 +40,7 @@ public:
     {
         a = to_string(value);
         int x;
-        loop(i,0,int(a.length()))
+        for (int i = 0; i < int(a.length()); i++)
         {
             if (a[i] == '0')
                 x = 5;
