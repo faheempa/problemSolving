@@ -1,0 +1,5 @@
+Case #1: 9
+Case #2: 10
+Case #3: 18
+
+Run time: 0.144 ms
