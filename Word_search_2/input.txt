@@ -1,0 +1,6 @@
+1
+3 4
+a b c e
+s f c s
+a d e e
+abc asad asap fcee fee seed sad sed

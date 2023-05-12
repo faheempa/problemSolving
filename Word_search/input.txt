@@ -1,0 +1,11 @@
+2
+3 4
+a b c e
+s f c s
+a d e e
+abcceda
+3 4
+a b c e
+s f c s
+a d e e
+asfa
