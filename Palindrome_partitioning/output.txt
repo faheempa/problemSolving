@@ -1,0 +1,3 @@
+Case #1: [ a a b ][ aa b ]
+Case #2: [ a a b b c ][ a a bb c ][ aa b b c ][ aa bb c ]
+Case #3: [ a ]

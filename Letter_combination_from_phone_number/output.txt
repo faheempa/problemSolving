@@ -1,0 +1,3 @@
+Case #1: a b c 
+Case #2: ad ae af bd be bf cd ce cf 
+Case #3: pw px py pz qw qx qy qz rw rx ry rz sw sx sy sz 
