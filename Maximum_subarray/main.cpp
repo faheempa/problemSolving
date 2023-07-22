@@ -1,35 +1,9 @@
 // question
-//  
+//  https://leetcode.com/problems/maximum-subarray/
 
 #include <bits/stdc++.h>
 using namespace std;
-template <class T>
-void print(T elems)
-{
-    for (auto elem : elems)
-        cout << elem << " ";
-}
-void read_string_vector(vector<string> &vec)
-{
-    string input;
-    string word = "";
-    getline(cin, input);
-    if (input.length() == 0)
-        return read_string_vector(vec);
-    input += " ";
-    for (auto var : input)
-    {
-        if (var == ' ')
-        {
-            if (word.length() == 0)
-                continue;
-            vec.push_back(word);
-            word = "";
-        }
-        else
-            word += var;
-    }
-}
+
 void read_int_vector(vector<int> &vec)
 {
     string input;
@@ -40,23 +14,31 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-
-int solve()
+int solve(vector<int> &vec)
 {
+    int max_sum = INT_MIN;
+    int sum = 0;
+    for (int i = 0; i < vec.size(); i++)
+    {
+        if (sum < 0)
+            sum = 0;
+        sum += vec[i];
+        max_sum = max(max_sum, sum);
+    }
+    return max_sum;
 }
-
 
 int main()
 {
-
     int t;
     cin >> t;
     for (int i = 1; i <= t; i++)
     {
-
+        vector<int> vec;
+        read_int_vector(vec);
 
         cout << "Case #" << i << ": ";
-        cout << solve();
+        cout << solve(vec);
         cout << endl;
     }
 }
