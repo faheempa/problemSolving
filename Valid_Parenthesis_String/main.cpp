@@ -1,5 +1,5 @@
 // question
-// https://leetcode.com/problems/merge-triplets-to-form-target-triplet/
+// https://leetcode.com/problems/valid-parenthesis-string/description/
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -40,24 +40,23 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-bool solve(vector<vector<int>> &triplets, vector<int> &target)
-{
-    bool target_validator[3]{false};
 
-    for (auto &tri : triplets)
-    {
-        if (tri[0] > target[0] or tri[1] > target[1] or tri[2] > target[2])
-            continue;
-
-        for (int i = 0; i < 3; i++)
-            target_validator[i] = target_validator[i] or tri[i] == target[i];
+bool solve(string s) {
+        int min{0},max{0};
+        for(auto &c: s)
+        {
+            if(c=='(')
+                min++, max++;
+            else if(c==')')
+                min--, max--;
+            else
+                min--, max++;
+            if(min<0) min=0;
+            if(max<0) return false;
+        }
+        return min==0;
     }
 
-    for (auto &t : target_validator)
-        if (t == false)
-            return false;
-    return true;
-}
 
 int main()
 {
@@ -66,20 +65,11 @@ int main()
     cin >> t;
     for (int i = 1; i <= t; i++)
     {
-        int n;
-        cin >> n;
-        vector<vector<int>> triplets;
-        while (n--)
-        {
-            vector<int> tri;
-            read_int_vector(tri);
-            triplets.push_back(tri);
-        }
-        vector<int> target;
-        read_int_vector(target);
+        string s;
+        cin>>s;
 
         cout << "Case #" << i << ": ";
-        cout << boolalpha << solve(triplets, target);
+        cout << boolalpha <<solve(s);
         cout << endl;
     }
 }
