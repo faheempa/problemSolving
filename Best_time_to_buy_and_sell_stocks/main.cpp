@@ -23,6 +23,8 @@ int solve(vector<int> &prices)
             profit = x - min;
     return profit;
 }
+// ?
+
 
 int main()
 {
