@@ -1,0 +1,4 @@
+3
+this is a text
+a     good      example
+   sky    is   blue  in color   

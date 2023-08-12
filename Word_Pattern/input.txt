@@ -1,0 +1,10 @@
+3
+
+abba
+bat cat cat bat
+
+abc
+pot cat dog
+
+hello
+dog bat cat cat
