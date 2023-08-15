@@ -14,20 +14,33 @@ string solve(string s, string t)
     int map[128]{};
     for (auto &c : t)
         map[c]++;
-    int count = t.size(), start = 0, end = 0, l = INT_MAX, head = 0;
+
+    int need = t.size(), start = 0, end = 0, winSize = INT_MAX, head = 0;
     while (end < int(s.size()))
     {
-        if (map[s[end++]]-- > 0)
-            count--;
-        while (count == 0)
+        if (map[s[end]] > 0)
+            need--;
+
+        map[s[end]]--;
+
+        while (need == 0)
         {
-            if (end - start <= l)
-                l = end - (head = start);
-            if (map[s[start++]]++ == 0)
-                count++;
+            // update window size
+            if (end - start + 1 < winSize)
+            {
+                winSize = end - start + 1;
+                head = start;
+            }
+            // we need to move start pointer to right
+            if (map[s[start]] == 0)
+                need++;
+
+            map[s[start]]++;
+            start++;
         }
+        end++;
     }
-    return l == INT_MAX ? "" : s.substr(head, l);
+    return winSize == INT_MAX ? "" : s.substr(head, winSize);
 }
 
 int main()
