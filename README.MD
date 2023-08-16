@@ -5,7 +5,8 @@ Problem is commented on top of the main file & the function solve() is the solut
 
 Exicuting (in linux):
 
-    g++ main.cpp && cat input.txt | ./a.out
+    g++ main.cpp
+    cat input.txt | ./a.out
 This will generate object code and run with the sample input.
 
 Input format:
