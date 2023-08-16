@@ -21,7 +21,7 @@ Output format:
 
     case #1: <output of case 1>
     case #2: <output of case 2>
-    case #..: <output of case ..>
+    case #.: <output of case .>
     case #n: <output of case n>
 
 Thank you...
