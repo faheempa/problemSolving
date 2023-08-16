@@ -20,6 +20,7 @@ void read_string_vector(vector<string> &vec)
     while (is >> word)
         vec.push_back(word);
 }
+<<<<<<< HEAD
     // If the list of words is empty, there's nothing to do, so return an empty result.
     // Count how many times each word appears in the list of words.
     // For each starting position in the input string:
@@ -36,6 +37,9 @@ void read_string_vector(vector<string> &vec)
             // Clear the current tracking record and Reset the count of valid words to zero.
             // Move the starting position of the group to the next word.
     // Collect and return all the recorded starting positions.
+=======
+
+>>>>>>> d339b0056ee605cf9c2d9ded0e322bd88e0c80e2
 vector<int> solve(string s, vector<string> &words)
 {
     vector<int> result;
@@ -46,6 +50,7 @@ vector<int> solve(string s, vector<string> &words)
     {
         counts[word]++;
     }
+<<<<<<< HEAD
     int wordLen = words[0].size(), num = words.size(), strLen = s.size();
     for (int i = 0; i < wordLen; ++i)
     {
@@ -55,15 +60,31 @@ vector<int> solve(string s, vector<string> &words)
         {
             string word = s.substr(right, wordLen);
             right += wordLen;
+=======
+    int len = words[0].size(), num = words.size(), sl = s.size();
+    for (int i = 0; i < len; ++i)
+    {
+        int left = i, sum = 0;
+        record.clear();
+        for (int j = i; j <= sl - len; j += len)
+        {
+            string word = s.substr(j, len);
+>>>>>>> d339b0056ee605cf9c2d9ded0e322bd88e0c80e2
             if (counts.count(word))
             {
                 record[word]++;
                 sum++;
                 while (record[word] > counts[word])
                 {
+<<<<<<< HEAD
                     // remove the most left word from the record
                     record[s.substr(left, wordLen)]--;
                     left += wordLen;
+=======
+                    // remove the most left word
+                    record[s.substr(left, len)]--;
+                    left += len;
+>>>>>>> d339b0056ee605cf9c2d9ded0e322bd88e0c80e2
                     sum--;
                 }
                 if (sum == num)
@@ -73,7 +94,11 @@ vector<int> solve(string s, vector<string> &words)
             {
                 record.clear();
                 sum = 0;
+<<<<<<< HEAD
                 left = right;
+=======
+                left = j + len;
+>>>>>>> d339b0056ee605cf9c2d9ded0e322bd88e0c80e2
             }
         }
     }
