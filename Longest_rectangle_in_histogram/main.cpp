@@ -16,37 +16,33 @@ void read_int_vector(vector<int> &vec)
 
 int solve(vector<int> &heights)
 {
+    // [idex, height]
+    int res{INT_MIN};
     stack<pair<int, int>> stk;
-    int result = 0;
-
     for (int i = 0; i < heights.size(); i++)
     {
-        int start = i;
-
-        while (!stk.empty() && stk.top().second > heights[i])
+        int start{i};
+        while (stk.empty() == false and stk.top().second > heights[i])
         {
             int index = stk.top().first;
-            int width = i - index;
             int height = stk.top().second;
+            int width = i - index;
             stk.pop();
 
-            result = max(result, height * width);
+            res = max(res, height * width);
             start = index;
         }
-
         stk.push({start, heights[i]});
     }
-
-    while (!stk.empty())
+    while (stk.empty() == false)
     {
-        int width = heights.size() - stk.top().first;
         int height = stk.top().second;
+        int width = heights.size() - stk.top().first;
         stk.pop();
 
-        result = max(result, height * width);
+        res = max(res, height * width);
     }
-
-    return result;
+    return res;
 }
 
 int main()

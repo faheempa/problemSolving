@@ -1,0 +1,4 @@
+3
+/../home/
+/home//foo/
+/home//foo/..//bar/

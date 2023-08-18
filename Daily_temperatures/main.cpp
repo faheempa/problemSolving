@@ -1,5 +1,5 @@
 // Question
-//
+// https://leetcode.com/problems/daily-temperatures/
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,24 +22,21 @@ void read_int_vector(vector<int> &vec)
 vector<int> solve(vector<int> &temps)
 {
     int n = temps.size();
-    if (n == 0)
-        return {};
-    if (n == 1)
-        return {0};
+    if (n < 2)
+        return temps;
 
-    vector<int> ans(n, 0);
-    stack<int> stk;
-
+    stack<int> s;
+    vector<int> res(n, 0);
     for (int i = 0; i < n; i++)
     {
-        while (not stk.empty() and temps.at(stk.top()) < temps.at(i))
+        while (!s.empty() and temps[s.top()] < temps[i])
         {
-            ans.at(stk.top()) = i - stk.top();
-            stk.pop();
+            res[s.top()] = i - s.top();
+            s.pop();
         }
-        stk.push(i);
+        s.push(i);
     }
-    return ans;
+    return res;
 }
 
 int main()
