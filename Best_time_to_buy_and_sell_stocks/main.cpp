@@ -15,16 +15,16 @@ void read_int_vector(vector<int> &vec)
 
 int solve(vector<int> &prices)
 {
-    int profit = 0, min = 1e4;
-    for (int &x : prices)
-        if (x < min)
-            min = x;
-        else if (x - min > profit)
-            profit = x - min;
+    int min{INT_MAX}, profit{0};
+    for(auto &p: prices)
+    {
+        if(p<min)
+            min=p;
+        else
+            profit = max(profit, p-min);
+    }
     return profit;
 }
-// ?
-
 
 int main()
 {

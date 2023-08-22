@@ -18,47 +18,33 @@ vector<int> read_an_int_vector()
     return vec;
 }
 
-int solve(vector<int> numbers, int k)
+int solve(vector<int> nums, int k)
 {
-    int ans = 0, i = 0, sum = 0, n = numbers.size();
-    queue<int> Q;
-    Q.push(numbers.at(i));
-    sum += numbers.at(i++);
-    while (!Q.empty())
+    int l{0}, r{0}, sum{0}, res{0};
+    while (r < nums.size())
     {
-        if (Q.front() > k and i < n)
+        if (nums[r] > k and r < nums.size())
         {
-            while (!Q.empty())
-                Q.pop();
-            sum = 0;
-            Q.push(numbers.at(i));
-            sum += numbers.at(i++);
-            continue;
+            r++;
+            sum = nums[r];
+            l = r;
         }
-        if (sum < k and i < n)
+        else if (sum < k)
         {
-            Q.push(numbers.at(i));
-            sum += numbers.at(i++);
+            r++;
+            sum += nums[r];
         }
         else if (sum == k)
         {
-            if (ans < int(Q.size()))
-                ans = Q.size();
-            sum -= Q.front();
-            Q.pop();
-            if (Q.empty())
-            {
-                Q.push(numbers.at(i));
-                sum += numbers.at(i++);
-            }
+            res = max(res, r - l + 1);
+            sum -= nums[l++];
         }
         else
         {
-            sum -= Q.front();
-            Q.pop();
+            sum -= nums[l++];
         }
     }
-    return ans;
+    return res;
 }
 
 int main()
@@ -72,9 +58,9 @@ int main()
         int k;
         numbers = read_an_int_vector();
         cin >> k;
+        cout << "Case #" << i << ": ";
         cout << solve(numbers, k) << endl;
     }
 
     return 0;
 }
-

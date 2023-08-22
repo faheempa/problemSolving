@@ -15,13 +15,11 @@ int n;
 void fun(string s, int open, int close)
 {
     if (open == close and open == n)
-    {
         ans.push_back(s);
-        return;
-    }
 
     if (open < n)
         fun(s + "(", open + 1, close);
+        
     if (close < open)
         fun(s + ")", open, close + 1);
 }

@@ -15,7 +15,7 @@ string solve(string s)
     bool condition[]{false, false, false, false};
     for (auto var : s)
     {
-        if (map.count(var) > 0)
+        if (map.count(var))
             condition[map[var]] = true;
     }
     for (auto var : condition)

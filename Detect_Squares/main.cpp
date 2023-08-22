@@ -26,20 +26,20 @@ public:
 
     int count(vector<int> point)
     {
-        int c = 0;
+        int res{0};
         int dx = point[0], dy = point[1];
-        for (auto &pt : mp)
+        for (auto &m : mp)
         {
-            int x = pt.first.first, y = pt.first.second;
-            if (abs(x - dx) == abs(y - dy) and x != dx and y != dy)
+            int x = m.first.first, y = m.first.second;
+            if (abs(x - dx) == abs(y - dy) and (x != dx and y != dy))
             {
-                int d2Count = mp[{x, y}];
-                int c1Count = mp[{x, dy}];
-                int c2Count = mp[{dx, y}];
-                c += d2Count * c1Count * c2Count;
+                int d2count = mp[{x, y}];
+                int a1count = mp[{x, dy}];
+                int a2count = mp[{dx, y}];
+                res = d2count * a1count * a2count;
             }
         }
-        return c;
+        return res;
     }
 
 private:
@@ -53,7 +53,7 @@ int main()
     cin >> t;
     for (int i = 1; i <= t; i++)
     {
-        cout << "Case #" << i << ": "<<endl;
+        cout << "Case #" << i << ": " << endl;
         auto *obj = new DetectSquares();
         int q;
         cin >> q;
@@ -66,13 +66,13 @@ int main()
                 vector<int> point;
                 read_int_vector(point);
                 obj->add(point);
-                cout<<"added "<<point[0]<<" "<<point[1]<<endl;
+                cout << "added " << point[0] << " " << point[1] << endl;
             }
             else if (s == "count")
             {
                 vector<int> point;
                 read_int_vector(point);
-                cout<<"count: "<< obj->count(point) << " "<<endl;
+                cout << "count: " << obj->count(point) << " " << endl;
             }
         }
         cout << endl;

@@ -17,18 +17,18 @@ void read_int_vector(vector<int> &vec)
 
 int solve(vector<int> &nums)
 {
-    auto l = nums.begin(), r = nums.end() - 1;
-    int ans = -1;
-    while (l != r)
+    int l{0}, r = nums.size() - 1;
+    int res{0};
+    while (l <= r)
     {
-        int value = abs(l - r) * min(*l, *r);
-        ans = max(ans, value);
-        if (*l < *r)
+        int cur_storage = (r - l) * min(nums[l], nums[r]);
+        res = max(res, cur_storage);
+        if (nums[l] < nums[r])
             l++;
         else
             r--;
     }
-    return ans;
+    return res;
 }
 
 int main()

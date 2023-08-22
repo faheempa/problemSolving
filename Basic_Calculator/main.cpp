@@ -6,42 +6,39 @@ using namespace std;
 
 int solve(string s)
 {
-    stack<int> stk;
-    int output{0}, sign{1}, cur{0};
-
+    stack<pair<int, int>> stk;
+    int output{0}, cur{0}, sign{1};
     for (auto &c : s)
     {
-        if (isdigit(c))
+        if (isdigit(c) == true)
         {
             cur = cur * 10 + (c - '0');
         }
         else if (c == '+' or c == '-')
         {
             output += cur * sign;
+            cur = 0;
             if (c == '+')
                 sign = 1;
             else
                 sign = -1;
-            cur = 0;
         }
         else if (c == '(')
         {
-            stk.push(output);
-            stk.push(sign);
+            stk.push({output, sign});
             output = 0;
-            sign = 1;
+            sign=1;
         }
         else if (c == ')')
         {
             output += cur * sign;
-            output *= stk.top();
+            cur=0;
+            auto val = stk.top();
             stk.pop();
-            output += stk.top();
-            stk.pop();
-            cur = 0;
+            output *= val.second;
+            output += val.first;
         }
     }
-    
     return output + cur * sign;
 }
 

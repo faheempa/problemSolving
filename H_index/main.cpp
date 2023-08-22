@@ -4,6 +4,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template <class T>
+void print(T elems)
+{
+    for (auto elem : elems)
+        cout << elem << " ";
+}
+
 void read_int_vector(vector<int> &vec, int n)
 {
     int a;
@@ -14,22 +21,25 @@ void read_int_vector(vector<int> &vec, int n)
     }
 }
 
-void solve(vector<int> &citations, int n)
+vector<int> solve(vector<int> &citations, int n)
 {
-    int index = 0;
-    std::priority_queue<int, std::vector<int>, std::greater<int>> q;
+    vector<int> res;
+    int index{0};
+    std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
     for (int i = 0; i < n; i++)
     {
         if (citations.at(i) > index)
-            q.push(citations.at(i));
-        if (int(q.size()) > index)
+            pq.push(citations.at(i));
+
+        if (int(pq.size()) > index)
         {
             index++;
-            while (int(q.top()) == index and !q.empty())
-                q.pop();
+            while (int(pq.top()) == index and !pq.empty())
+                pq.pop();
         }
-        cout << index << " ";
+        res.push_back(index);
     }
+    return res;
 }
 
 int main()
@@ -44,7 +54,7 @@ int main()
         read_int_vector(citations, n);
 
         cout << "Case #" << i << ": ";
-        solve(citations, n);
+        print(solve(citations, n));
         cout << endl;
     }
 }

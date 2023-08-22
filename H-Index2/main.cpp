@@ -14,20 +14,19 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
+int solve(vector<int> &cites)
+{
+    sort(cites.begin(), cites.end());
+    int h = cites.size();
+    for (int i = 0; i < cites.size(); i++)
+    {
+        if (cites[i] >= h)
+            return h;
 
-int solve(vector<int>& cites) {
-        sort(cites.begin(), cites.end());
-        int h=cites.size();
-        for(int i=0; i<cites.size(); i++)
-        {
-            if(cites[i]>=h)
-                return h;
-            else
-                h--;
-        }
-        return h;
+        h--;
     }
-
+    return h;
+}
 
 int main()
 {

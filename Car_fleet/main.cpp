@@ -17,18 +17,17 @@ void read_int_vector(vector<int> &vec)
 int solve(int target, vector<int> &pos, vector<int> &speed)
 {
     map<int, double, greater<int>> mp;
-    for (int i = 0; i < pos.size(); i++)
+    for(int i=0; i<pos.size(); i++)
     {
-        mp[pos[i]] = double((target - pos[i])) / speed[i];
+        mp[pos[i]] = double(target-pos[i])/speed[i];
     }
-
-    int res{0}, cur = {0};
-    for (auto &val : mp)
+    int res{0}, cur{INT_MIN};
+    for(auto &m: mp)
     {
-        if (val.second > cur)
+        if(m.second > cur)
         {
             res++;
-            cur = val.second;
+            cur=m.second;
         }
     }
     return res;

@@ -14,10 +14,7 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-class Solution
-{
-public:
-    int solve(vector<int> &nums)
+int solve(vector<int> &nums)
     {
         int fast{0}, slow{0};
         while (true)
@@ -36,7 +33,6 @@ public:
                 return slow;
         }
     }
-};
 
 int main()
 {
@@ -47,9 +43,8 @@ int main()
         vector<int> nums;
         read_int_vector(nums);
 
-        Solution sol;
         cout << "Case #" << i << ": ";
-        cout << sol.solve(nums);
+        cout << solve(nums);
         cout << endl;
     }
 }

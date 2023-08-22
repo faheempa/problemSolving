@@ -50,9 +50,8 @@ vector<vector<string>> solve(vector<string> strs)
         map[getKey(str)].push_back(str);
 
     vector<vector<string>> ans;
-    ans.reserve(map.size());
     for (auto it = map.begin(); it != map.end(); it++)
-        ans.push_back(move(it->second));
+        ans.push_back(it->second);
 
     return ans;
 }

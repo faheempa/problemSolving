@@ -16,19 +16,19 @@ void read_int_vector(vector<int> &vec)
 
 int solve(vector<int> &gas, vector<int> &cost)
 {
-    int size = gas.size();
-    int curGas = 0, extraNeed = 0, start = 0;
-    for (int i = 0; i < size; i++)
+    int size=gas.size();
+    int curGas{0}, start{0}, gasNeed{0};
+    for(int i=0; i<size; i++)
     {
         curGas += gas[i] - cost[i];
-        if (curGas < 0)
+        if(curGas<0)
         {
-            extraNeed += -curGas;
-            start = i + 1;
-            curGas = 0;
+            gasNeed += abs(curGas);
+            curGas=0;
+            start=i+1;
         }
     }
-    return (extraNeed > curGas) ? -1 : start;
+    return (curGas >= gasNeed)? start : -1;
 }
 
 int main()
