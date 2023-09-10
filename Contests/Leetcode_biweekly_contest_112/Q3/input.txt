@@ -1,0 +1,4 @@
+3
+bcca 2
+abbcd 4
+mrbrj 2

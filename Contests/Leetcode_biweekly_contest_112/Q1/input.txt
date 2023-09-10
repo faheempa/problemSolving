@@ -1,0 +1,4 @@
+3
+abcd cdab
+abcd dacb
+abcd abcd

@@ -14,39 +14,35 @@ void read_int_vector(vector<int> &vec)
     vec = vector<int>((istream_iterator<int>(is)), istream_iterator<int>());
 }
 
-class Solution
+int rob(vector<int> &arr, int start, int end)
 {
-    int n;
+    if (start == end)
+        return arr[start];
 
-public:
-    int solve(vector<int> &nums)
+    int n = arr.size();
+    vector<int> dp(n, -1);
+    dp[start] = arr[start];
+    dp[start + 1] = max(arr[start], arr[start + 1]);
+    for (int i = start + 2; i <= end; i++)
     {
-        n = nums.size();
-        if (n == 0)
-            return 0;
-        if (n == 1)
-            return nums[0];
+        int pick = arr.at(i) + dp[i - 2];
+        int notPick = dp[i - 1];
+        dp.at(i) = std::max(pick, notPick);
+    }
+    return dp[end];
+}
+int solve(vector<int> &nums)
+{
+    int n = nums.size();
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return nums[0];
 
-        int a = rob1(nums, 0, n - 2);
-        int b = rob1(nums, 1, n - 1);
-        return max(a, b);
-    }
-    int rob1(vector<int> &arr, int start, int end)
-    {
-        if (start == end)
-            return arr[start];
-        vector<int> dp(n, -1);
-        int prev2 = arr[start];
-        int prev1 = std::max(arr[start + 1], arr[start]);
-        for (int i = start + 2; i <= end; i++)
-        {
-            dp.at(i) = std::max(arr.at(i) + prev2, prev1);
-            prev2 = prev1;
-            prev1 = dp[i];
-        }
-        return prev1;
-    }
-};
+    int a = rob(nums, 0, n - 2);
+    int b = rob(nums, 1, n - 1);
+    return max(a, b);
+}
 
 int main()
 {
@@ -57,9 +53,8 @@ int main()
         vector<int> vec;
         read_int_vector(vec);
 
-        Solution sol;
         cout << "Case #" << i << ": ";
-        cout << sol.solve(vec);
+        cout << solve(vec);
         cout << endl;
     }
 }

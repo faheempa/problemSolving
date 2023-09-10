@@ -4,32 +4,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
+int solve(string s)
 {
-public:
-    int solve(string s)
+    int res = 0;
+    for (int i = 0; i < s.size(); i++)
     {
-        int result = 0;
-
-        for (int i = 0; i < s.size(); i++)
-        {
-            middleOut(s, i, i, result);
-            middleOut(s, i, i + 1, result);
-        }
-
-        return result;
+        res += middleOut(s, i, i);
+        res += middleOut(s, i, i + 1);
     }
-
-    void middleOut(string s, int i, int j, int &result)
+    return res;
+}
+int middleOut(string s, int i, int j)
+{
+    int count{0};
+    while (i >= 0 && j <= s.size() - 1 && s[i] == s[j])
     {
-        while (i >= 0 && j < s.size() && s[i] == s[j])
-        {
-            result++;
-            i--;
-            j++;
-        }
+        i--;
+        j++;
+        count++;
     }
-};
+    return count;
+}
 
 int main()
 {
@@ -38,10 +33,9 @@ int main()
     for (int i = 1; i <= t; i++)
     {
         string s;
-        cin>>s;
-        Solution sol;
+        cin >> s;
         cout << "Case #" << i << ": ";
-        cout << sol.solve(s);
+        cout << solve(s);
         cout << endl;
     }
 }
